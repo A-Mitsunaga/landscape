@@ -1,10 +1,10 @@
 <div class="post-body">
 
-  <%= attachment_image_tag @post_image, :image %>
+  <%= attachment_image_tag @post_image, :image, width: '50%', height: '50%' %>
 
-  <p>本文：<%= @post_image.text %></p>
+  <p><%= @post_image.text %></p>
 
-  <p>ユーザーネーム：<%= @post_image.user.name %></p>
+  <p>投稿者：<%= @post_image.user.name %></p>
 
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 
@@ -38,13 +38,13 @@
     <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
   </div>
   <% end %>
-
-
 <% end %>
 </div>
+
 <div class="new-comment">
 <%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信する" %>
 <% end %>
 </div>
+

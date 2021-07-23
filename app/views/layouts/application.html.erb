@@ -19,6 +19,11 @@
       <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       </li>
+
+      <li>
+      <%= link_to 'マイページ', user_path(current_user.id) %>
+      </li>
+
     <% else %>
       <li>
         <%= link_to "新規登録", new_user_registration_path %>
