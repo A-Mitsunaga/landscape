@@ -3,11 +3,6 @@
 <div>
   <p>投稿者：<%= post_image.user.name %></p>
   <%# @users.each do |user| %>
-  <% if current_user.following?(@user) %>
-  <%= link_to "フォロー解除", user_relationships_path(@users), method: :delete %>
-  <% else %>
-  <%= link_to "フォローする", user_relationships_path(@users), method: :post %>
-  <% end %>
   <%# end %>
   <p><%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
   <%= link_to post_image_path(post_image.id) do %>
