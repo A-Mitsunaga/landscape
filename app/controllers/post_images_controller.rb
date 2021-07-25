@@ -13,6 +13,7 @@ class PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.page(params[:page]).reverse_order
+    @users = User.all
   end
 
   def show
