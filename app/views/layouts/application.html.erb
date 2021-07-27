@@ -9,16 +9,20 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <nav class="navbar navbar-light" style="background-color: #FF8C00;">
+  <div class="container">
+    <a class="navbar-brand" href="/"><i class="fas fa-camera-retro"> landscape</i></a>
+
+
   <body>
     <% if user_signed_in? %>
 
-      <li>
-        <%= link_to '投稿フォーム', new_post_image_path %>
-      </li>
+      <a class="fas fa-image nav-link" rel="nofollow"  href="/post_images/new">新規投稿<% new_post_image_path %></a>
 
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
+        <a class="fas fa-sign-out-alt nav-link" rel="nofollow" data-method="delete" href="/users/sign_out">
+          ログアウト<% destroy_user_session_path%>
+        </a>
+
 
       <li>
       <%= link_to 'マイページ', user_path(current_user.id) %>
@@ -29,13 +33,15 @@
       </li>
 
     <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
+    <div class="text-right">
+      <a class="fas fa-sign-in-alt nav-link" rel="nofollow"  href="/users/sign_in">ログイン<% new_user_session_path %></a>
+
+      <a class="fas fa-user-plus nav-link" rel="nofollow"  href="/users/sign_up">新規登録<% new_user_registration_path %></a>
+    </div>
     <% end %>
+
+    </div>
+    </nav>
 
     <%= yield %>
   </body>
