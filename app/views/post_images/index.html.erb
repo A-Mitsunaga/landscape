@@ -1,23 +1,11 @@
 <% @post_images.each do |post_image| %>
 
 <div>
-  <%# unless current_user == @user %>
-  <% if current_user.following?(@user) %>
-    <%= form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f| %>
-      <%= hidden_field_tag :follow_id, @user.id %>
-      <%= f.submit 'Unfollow' %>
-    <% end %>
-  <% else %>
-    <%= form_for(current_user.relationships.build) do |f| %>
-      <%= hidden_field_tag :follow_id, @user.id %>
-      <%= f.submit 'Follow' %>
-    <% end %>
-  <% end %>
-<%# end %>
-  <p>投稿者：<%= post_image.user.name %></p>
-  <%# @users.each do |user| %>
-  <%# end %>
-  <p><%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></p>
+  <div>
+  <%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <%= post_image.user.name %>
+  <%= render '/users/info', users: @users %>
+  </div>
   <%= link_to post_image_path(post_image.id) do %>
     <%= attachment_image_tag post_image, :image, width: '50%', height: '50%' %>
   <% end %>

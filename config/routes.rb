@@ -10,7 +10,16 @@ Rails.application.routes.draw do
   end
 
 
-  resources :users, only:[:show, :edit, :update, :index]
-  resources :relationships, only: [:create, :destroy]
+  resources :users, only:[:show, :edit, :update, :index] do
+  resource :relationships, only: [:create, :destroy, :index]
+  get 'followings' => 'relationships#followings', as: 'followings'
+  get 'followers' => 'relationships#followers', as: 'followers'
+  get 'relationships' => 'relationships#index'
+  end
+
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
+  get 'done', to: 'contacts#done', as: 'done'
 
 end
