@@ -1,8 +1,11 @@
-<h3>ユーザー一覧</h3>
+<h5>フォロー</h5>
+<% if @users.exists? %>
+    <% @users.each do |user| %>
+      <%= user.followings.name %>
+    <% end %>
 
-<% @users.each do |user| %>
-
-<%= user.name %>
-
-<%#= render '/users/index', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
 <% end %>
+
+<h5>フォロワー</h5>
