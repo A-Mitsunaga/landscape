@@ -7,22 +7,20 @@
 
    <div class="profile-container">
 
+
    <h5 class="profile-name"><%= @user.name %></h5>
    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
    <% if @user.id == current_user.id %>
+
+
   <br>
    <i class="fas fa-user-cog"><%= link_to "プロフィール編集", edit_user_path(@user) %></i>
   <% end %>
+  <p>
+</p>
+
   </div>
   <br>
-
-  <div>
-   フォロー数: <%= @user.followings.count %>
-   <br>
-   フォロワー数: <%= @user.followers.count %>
-
-  </div>
-   <%= link_to "フォロー・フォロワー一覧", users_path %>
 
 </div>
 
@@ -55,3 +53,5 @@
 
 </div>
 </div>
+
+

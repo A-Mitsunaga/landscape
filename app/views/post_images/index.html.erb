@@ -2,9 +2,11 @@
 
 <div>
   <div>
+
   <%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
   <%= post_image.user.name %>
-  <%= render '/users/info', users: @users %>
+
+
   </div>
   <%= link_to post_image_path(post_image.id) do %>
     <%= attachment_image_tag post_image, :image, width: '50%', height: '50%' %>
@@ -15,4 +17,7 @@
 </div>
 <br>
 <% end %>
+
+
+
 <%= paginate @post_images %>

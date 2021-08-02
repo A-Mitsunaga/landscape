@@ -1,0 +1,16 @@
+aaaaa
+<table>
+  <% @followings.each do |user| %>
+    <tr>
+      <td>
+        <% if user.icon.attached? %>
+          <%= image_tag user.icon.variant(resize_to_limit: [30, 30]) %>
+        <% end %>
+      </td>
+      <td><%= link_to user.username, user_path(user) %></td>
+      <td><%= user.profile %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to t("button.back"), user_path %>
