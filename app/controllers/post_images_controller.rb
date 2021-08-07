@@ -1,4 +1,14 @@
 class PostImagesController < ApplicationController
+  before_action :set_q, only: [:index, :search]
+
+  def search
+
+  @results = @q.result
+    # タグ検索
+   # @tag_search = Product.tagged_with(params[:search])
+  end
+
+
 
   def new
     @post_image = PostImage.new
@@ -15,6 +25,11 @@ class PostImagesController < ApplicationController
     @post_images = PostImage.page(params[:page]).reverse_order
     @users = User.all
     @user = current_user
+      # キーワード検索
+    @q = PostImage.ransack(params[:q])
+    #@post_image = @search.result.order("created_at DESC").page(params[:page]).per(10)
+    @post_image = @q.result.includes(:text).page(params[:page]).order("created_at desc")
+
   end
 
   def show
@@ -29,6 +44,10 @@ class PostImagesController < ApplicationController
   end
 
  private
+
+  def set_q
+    @q = PostImage.ransack(params[:q])
+  end
 
   def post_image_params
     params.require(:post_image).permit(:image, :text)
