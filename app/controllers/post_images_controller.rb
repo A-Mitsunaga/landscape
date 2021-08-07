@@ -17,9 +17,15 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    #@post_image.save
+    #redirect_to post_images_path
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render('post_images/new')
+    end
   end
+
 
   def index
     @post_images = PostImage.page(params[:page]).reverse_order
@@ -50,7 +56,7 @@ class PostImagesController < ApplicationController
   end
 
   def post_image_params
-    params.require(:post_image).permit(:image, :text)
+    params.require(:post_image).permit(:image, :text, :hashbody, post_image_images_images: [], hashtag_ids: [])
   end
 
 end

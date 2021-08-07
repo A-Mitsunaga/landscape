@@ -23,6 +23,8 @@
   <% end %>
 
   <p><%= post_image.text%></p>
+  <p><%= post_image.hashbody %></p>
+  <%#= render_with_hashtags(@post_images.hashbody) %>
     <p><%= link_to "#{post_image.post_comments.count} コメント", post_image_path(post_image.id) %></p>
 </div>
 <br>

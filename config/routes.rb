@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'homes#top'
+  get '/post_image/hashtag/:name' => 'post_images#hashtag'
+  get '/post_image/hashtag' => 'post_images#hashtag'
   #get '/post_images/search' => 'post_images#search'
   #post '/post_images/search' => 'post_images#search'
 
