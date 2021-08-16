@@ -1,8 +1,38 @@
-<h6>ユーザー一覧</h6>
+<div class="container">
+	<div class="row">
+		<div class="main_group col-xs-12">
+			<table class="table table-hover">
+				<h2 class="text-center"><i class="fas fa-user-friends"></i> 全てのユーザー</h2>
 
-<% @users.each do |user| %>
-
-<%= link_to user.name, user_path(user.id) %>
-
-<% end %>
-
+				<thead>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+					<tr>
+					  <td></td>
+						<td>
+							<%= link_to user_path(user.id) do %>
+						  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+								<%#= attachment_image_tag(user, :image, size: "50x50", fallback: "noImg.jpg", size: "50x50") %>
+							<% end %>
+						</td>
+						<td class="user_name">
+							<%= link_to user_path(user.id) do %>
+								<h4><%= user.name %></h4>
+							<% end %><br>
+						</td>
+						<td>
+							<div class="text-center follow-icon">
+								<% if current_user.following?(user) %>
+								  <i class="fas fa-user-circle fa-3x"></i>
+								<% end %>
+							</div>
+						</td>
+					</tr>
+					<% end %>
+				</tbody><br>
+			</table><br>
+		</div><br>
+	</div><br>
+  <%#= paginate @users %>
+</div><br>

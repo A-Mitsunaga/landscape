@@ -1,0 +1,34 @@
+<div class="container">
+<% provide(:title, @title) %>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3><%= @title %></h3>
+      <table class="table">
+        <thead>
+          <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+  						<td>
+  							<%= link_to user_path(user.id) do %>
+  								<%= attachment_image_tag(user, :image, size: "50x50", fallback: "noImg.jpg", size: "50x50") %>
+  							<% end %>
+  						</td>
+  						<td class="user_name">
+  							<%= link_to user_path(user.id) do %>
+  								<h4><%= user.name %></h4>
+  							<% end %><br>
+  						</td>
+          　</tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -36,6 +36,15 @@ class PostImagesController < ApplicationController
     #@post_image = @search.result.order("created_at DESC").page(params[:page]).per(10)
     @post_image = @q.result.includes(:text).page(params[:page]).order("created_at desc")
 
+    @user = current_user
+    if params[:name].nil?
+      @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.post_images.count}
+    else
+      @hashtag = Hashtag.find_by(hashname: params[:name])
+      @postimage = @hashtag.post_images.page(params[:page]).per(20).reverse_order
+      @hashtags = Hashtag.all.to_a.group_by{ |hashtag| hashtag.post_images.count}
+    end
+
   end
 
   def show
@@ -48,6 +57,7 @@ class PostImagesController < ApplicationController
     @post_image.destroy
     redirect_to post_images_path
   end
+
 
  private
 

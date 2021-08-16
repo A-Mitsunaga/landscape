@@ -24,11 +24,17 @@ before_action :set_user, only: %I[show edit update destroy followings followers]
   end
 
   def followings
-    @followings = @user.following_users
+      @user  = User.find(params[:user_id])
+      @title = @user.name + " さんがフォロー中"
+      @users = @user.followings
+      render 'show_follow'
   end
 
   def followers
-    @followers = @user.follower_users
+      @user  = User.find(params[:user_id])
+      @title = @user.name + " さんをフォロー中"
+      @users = @user.followers
+      render 'show_follow'
   end
 
 

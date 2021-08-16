@@ -1,10 +1,4 @@
-<h6>検索</h6>
-<%= search_form_for @q, url: search_post_images_path do |f| %>
-  <%= f.label :text_cont, 'キーワード検索' %><br>
-  <%= f.search_field :text_cont %><br>
-  <br>
-  <%= f.submit '検索' %>
-<% end %>
+
 
 <br>
 <%#= render 'search', q: @q, url: post_images_search_path %>
@@ -33,3 +27,34 @@
 
 
 <%= paginate @post_images %>
+<br>
+
+<h5>投稿検索</h5>
+
+
+
+<%= search_form_for @q, url: search_post_images_path do |f| %>
+  <%= f.label :text_cont, 'キーワード検索' %><br>
+  <%= f.search_field :text_cont %><br>
+  <br>
+  <%= f.submit '検索' %></br>
+<br>
+<h6>タグ検索</h6>
+<% end %>
+
+
+<% if params[:name] == nil %>
+
+<% else %>
+
+<% end %>
+
+<div class= "hashtag-name">
+    <% @hashtags.sort.reverse.each do |count| %>
+        <% count[1].each do |hashtag| %>
+            <p><%= link_to  "##{hashtag.hashname} (#{hashtag.post_images.count}) 件","/post_image/hashtag/#{hashtag.hashname}",data: {"turbolinks" => false} %>
+            </p>
+        <% end %>
+    <% end %>
+</div>
+
